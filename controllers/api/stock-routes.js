@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const {Gallery} = require("../../models")
+const {Stock} = require("../../models")
 
 router.get('/', async (req, res) => {
-    // find all categories
+    // find all stocks
     try {
-      const gallerydata = await Gallery.findAll();
-      res.status(200).json(gallerydata);
+      const stockdata = await Stock.findAll();
+      res.status(200).json(stockdata);
     } catch (err) {
       res.status(500).json.apply(err);
     }

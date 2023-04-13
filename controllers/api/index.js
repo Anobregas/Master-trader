@@ -1,9 +1,12 @@
 const router = require('express').Router();
-const galleryRoutes = require('./gallery-routes');
+const stockRoutes = require('./stock-routes');
+const companyRoutes = require('./company-routes')
 
 const userRoutes = require('./user-routes');
 
 router.use('/users', userRoutes);
-router.use('/gallery', galleryRoutes);
+router.use('/stock', stockRoutes);
+router.use('/company', companyRoutes);
+
 
 module.exports = router;
