@@ -1,23 +1,24 @@
 const router = require('express').Router();
-const { Gallery, Painting } = require('../models');
+const { Stock, Company } = require('../models');
 
-// GET all galleries for homepage
+// GET all stocks for homepage
 router.get('/', async (req, res) => {
   try {
-    const dbGalleryData = await Gallery.findAll({
+    const dbStockData = await Stock.findAll({
       include: [
         {
-          model: Painting,
-          attributes: ['filename', 'description'],
+          model: Company,
+          attributes: ['description', 'ceo'],
         },
       ],
     });
 
-    const galleries = dbGalleryData.map((gallery) =>
-      gallery.get({ plain: true })
+    const stocks = dbStockData.map((stock) =>
+      stock.get({ plain: true })
     );
+    console.log(stocks);
     res.render('homepage', {
-      galleries,
+      stocks,
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {
@@ -26,27 +27,26 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET one gallery
+// GET one stock
 router.get('/gallery/:id', async (req, res) => {
   try {
-    const dbGalleryData = await Gallery.findByPk(req.params.id, {
+    const dbStockData = await Stock.findByPk(req.params.id, {
       include: [
         {
-          model: Painting,
+          model: Company,
           attributes: [
             'id',
-            'title',
-            'artist',
-            'exhibition_date',
-            'filename',
             'description',
+            'ceo',
+            'founded',
+            'headquarters',
           ],
         },
       ],
     });
 
-    const gallery = dbGalleryData.get({ plain: true });
-    res.render('gallery', { gallery, loggedIn: req.session.loggedIn });
+    const  stock = dbStockData.get({ plain: true });
+    res.render('gallery', { stock, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -56,10 +56,10 @@ router.get('/gallery/:id', async (req, res) => {
 // GET one painting
 router.get('/painting/:id', async (req, res) => {
   try {
-    const dbPaintingData = await Painting.findByPk(req.params.id);
+    const dbCompanyData = await Company.findByPk(req.params.id);
 
-    const painting = dbPaintingData.get({ plain: true });
-    res.render('painting', { painting, loggedIn: req.session.loggedIn });
+    const company = dbCompanyData.get({ plain: true });
+    res.render('painting', { company, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
