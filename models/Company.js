@@ -27,13 +27,6 @@ Company.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    company_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'company',
-        key: 'id',
-      },
-    },
   },
   {
     sequelize,
