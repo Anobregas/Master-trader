@@ -23,7 +23,15 @@ Stock.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    company_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'company',
+        key: 'id',
+      },
   },
+},
+
   {
     sequelize,
     freezeTableName: true,

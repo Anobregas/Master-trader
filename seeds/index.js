@@ -5,9 +5,10 @@ const seedCompany = require('./companyData');
 const seedAll = async () => {
   await sequelize.sync({ force: true });
 
+  await seedCompany();
+  
   await seedStock();
 
-  await seedCompany();
 
   process.exit(0);
 };

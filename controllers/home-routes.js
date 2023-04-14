@@ -1,8 +1,11 @@
 const router = require('express').Router();
 const { Stock, Company } = require('../models');
+const withAuth = require('../utils/auth')
+
 
 // GET all stocks for homepage
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
+  console.log('1')
   try {
     const dbStockData = await Stock.findAll({
       include: [
@@ -26,6 +29,8 @@ router.get('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
 
 // GET one stock
 router.get('/gallery/:id', async (req, res) => {

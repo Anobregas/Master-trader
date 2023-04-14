@@ -2,11 +2,11 @@ const User = require('./User');
 const Stock = require('./Stock');
 const Company = require('./Company');
 
-Stock.hasMany(Company, {
+Company.hasOne(Stock, {
   foreignKey: 'company_id',
 });
 
-Company.belongsTo(Stock, {
+Stock.belongsTo(Company, {
   foreignKey: 'company_id',
 });
 
