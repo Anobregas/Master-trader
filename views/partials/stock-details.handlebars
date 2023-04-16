@@ -1,10 +1,4 @@
-
-<section class="card">
- <canvas id="acquisitions"></canvas>
-  <a href="/gallery/{{id}}">
-    <header > Company Name: {{name}}<br>High Price: {{high_price}}<br>Low Price: {{low_price}}  
-    </header>
-  </a>
+<section>
   <script src="
 https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js
 "></script>
@@ -27,7 +21,7 @@ https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js
     new Chart(
       document.getElementById('acquisitions'),
       {
-        type: 'line',
+        type: 'bar',
         data: {
           labels: data.map(row => row.company_id),
           datasets: [
@@ -40,5 +34,20 @@ https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js
       }
     );
   })();</script>
+
+ <canvas id="acquisitions" class="mb-5"></canvas>
+
+</section>
+
+
+<section class="card">
+  {{!-- <a href="/gallery/{{id}}"> --}}
+    <header > Company Name: {{name}}<br>High Price: {{high_price}}<br>Low Price: {{low_price}} <br> 
+    {{company.description}} <br>
+    CE0: {{company.ceo}}<br>
+    Founded: {{company.founded}}<br>
+    Headquarters: {{company.headquarters}} 
+    </header>
+  {{!-- </a> --}}
 </section>
 

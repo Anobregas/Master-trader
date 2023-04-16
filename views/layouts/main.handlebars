@@ -12,23 +12,20 @@
 </head>
 
 <body>
-    <header>
-        <h1 class="row justify-content-start">Master Trader</h1>
-    </header>
+    
     <nav class="navbar bg-body-tertiary">
         <form class="container-fluid justify-content-start"></form>
-            <button class="tn btn-outline-success me-2"><a href="/">Home</a></button>
+        <h1 class="row justify-content-center text-center ms-5" id="title">Master Trader</h1>
+            <button class="home-btn"><a href="/">Home</a></button>
             {{#if loggedIn}}
             <button id="logout" class="btn btn-sm btn-outline-secondary">Logout</button>
             {{else}}
-            <a href="/login">Login</a>
+            <button class="login-btn"><a href="/login">Login</a></button>
             {{/if}}
         </form>
     </nav>
     <main>
-        <aside>
-            <h2>Stock</h2>
-        </aside>
+        
         <div class="gallery">
             {{{body}}}
         </div>

@@ -11,7 +11,7 @@ router.get('/', withAuth, async (req, res) => {
       include: [
         {
           model: Company,
-          attributes: ['description', 'ceo'],
+          attributes: ['description', 'ceo','founded','headquarters'],
         },
       ],
     });
